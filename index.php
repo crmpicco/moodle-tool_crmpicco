@@ -20,14 +20,27 @@
  */
 
 require_once('../../../config.php');
+require_once($CFG->libdir.'/adminlib.php');
+
+$id = optional_param('id', 0, PARAM_INT);
+
+$title = 'My modules page title - crmpicco';
 
 $PAGE->set_context(context_system::instance());
-$PAGE->set_url('/admin/tool/crmpicco/index.php', array('id' => 'asd'));
-$PAGE->set_title('My modules page title - crmpicco');
-$PAGE->set_heading('My modules page heading - crmpicco');
+$PAGE->set_url('/admin/tool/crmpicco/index.php', array('id' => ''));
+$PAGE->set_pagelayout('report');
+$PAGE->set_title($title);
+$PAGE->set_heading($title);
 
 // The rest of your code goes below this.
 
-echo "hello world<br>";
+echo $OUTPUT->header();
 
-echo get_string('helloworld', 'tool_crmpicco');
+echo "hello world<br>";
+echo "id: " . $id . "<br>";
+
+echo get_string('helloworld', 'tool_crmpicco') . "<br>";
+
+echo html_writer::start_span() . get_string('helloworld', 'tool_crmpicco') . html_writer::end_span();
+
+echo $OUTPUT->footer();
