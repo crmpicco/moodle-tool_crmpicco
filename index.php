@@ -15,21 +15,19 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package   tool_crmpicco
  * @copyright 2016, Craig R Morton <craig@moodle.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+require_once('../../../config.php');
 
-$plugin->version   = 2016042101;
-//$plugin->requires  = TODO;
-//$plugin->cron      = 0;
-$plugin->component = 'tool_crmpicco';
-$plugin->maturity  = MATURITY_ALPHA;
-$plugin->release   = '1.1';
+$PAGE->set_context(context_system::instance());
+$PAGE->set_url('/admin/tool/crmpicco/index.php', array('id' => 'asd'));
+$PAGE->set_title('My modules page title - crmpicco');
+$PAGE->set_heading('My modules page heading - crmpicco');
 
-//$plugin->dependencies = array(
-//    'mod_forum' => ANY_VERSION,
-//    'mod_data'  => TODO
-//);
+// The rest of your code goes below this.
+
+echo "hello world<br>";
+
+echo get_string('helloworld', 'tool_crmpicco');
