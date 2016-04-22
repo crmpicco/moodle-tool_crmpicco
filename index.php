@@ -22,13 +22,16 @@
 require_once('../../../config.php');
 require_once($CFG->libdir.'/adminlib.php');
 
-$id = optional_param('id', 0, PARAM_INT);
+$courseid = required_param('id', PARAM_INT);
 
 $title = 'My modules page title - crmpicco';
 
-$PAGE->set_context(context_system::instance());
-$PAGE->set_url('/admin/tool/crmpicco/index.php', array('id' => ''));
-$PAGE->set_pagelayout('report');
+$course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
+require_course_login($course);
+
+$PAGE->set_context(context_course::instance($course->id));
+$PAGE->set_url('/admin/tool/crmpicco/index.php', array('id' => $courseid));
+$PAGE->set_pagelayout('incourse');
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
 
@@ -37,7 +40,7 @@ $PAGE->set_heading($title);
 echo $OUTPUT->header();
 
 echo "hello world<br>";
-echo "id: " . $id . "<br>";
+echo "courseid: " . $courseid . "<br>";
 
 echo get_string('helloworld', 'tool_crmpicco') . "<br>";
 

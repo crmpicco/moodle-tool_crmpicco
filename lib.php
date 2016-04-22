@@ -15,21 +15,24 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package   tool_crmpicco
  * @copyright 2016, Craig R Morton <craig@moodle.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+/**
+ * @param $navigation
+ * @param $course
+ * @param $context
+ * @throws coding_exception
+ */
+function tool_crmpicco_extend_navigation_course($navigation, $course, $context) {
 
-$plugin->version   = 2016042200;
-//$plugin->requires  = TODO;
-//$plugin->cron      = 0;
-$plugin->component = 'tool_crmpicco';
-$plugin->maturity  = MATURITY_ALPHA;
-$plugin->release   = '1.3';
+    $navigation->add(
+        get_string('pluginname', 'tool_crmpicco'),
+        new moodle_url('/admin/tool/crmpicco/index.php', array('id' => $course->id)),
+        navigation_node::TYPE_COURSE,
+        get_string('pluginname', 'tool_crmpicco'),
+        'crmpicco'
+    );
 
-//$plugin->dependencies = array(
-//    'mod_forum' => ANY_VERSION,
-//    'mod_data'  => TODO
-//);
+}
