@@ -31,16 +31,25 @@ require_course_login($course);
 
 $PAGE->set_context(context_course::instance($course->id));
 $PAGE->set_url('/admin/tool/crmpicco/index.php', array('id' => $courseid));
-$PAGE->set_pagelayout('incourse');
+$PAGE->set_pagelayout('report');
 $PAGE->set_title($title);
 $PAGE->set_heading($title);
 
 // The rest of your code goes below this.
 
+// count the number of registered users
+$numberofusers = $DB->count_records('user', array('confirmed' => 1));
+
 echo $OUTPUT->header();
 
 echo "hello world<br>";
-echo "courseid: " . $courseid . "<br>";
+
+echo "The number of registered users is " . $numberofusers . "<br>";
+
+// display information about the current course
+echo html_writer::start_div('courseid') . 'Course ID: ' . $course->id . html_writer::end_div();
+echo html_writer::start_div('coursename') . 'Course Name: ' . $course->fullname . html_writer::end_div();
+echo html_writer::start_div('coursename') . 'Course Start Date: ' . userdate($course->startdate) . html_writer::end_div();
 
 echo get_string('helloworld', 'tool_crmpicco') . "<br>";
 
