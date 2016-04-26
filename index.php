@@ -21,6 +21,8 @@
 
 require_once('../../../config.php');
 require_once($CFG->libdir.'/adminlib.php');
+require_once($CFG->libdir.'/tablelib.php');
+require_once('lib.php');
 
 $courseid = required_param('id', PARAM_INT);
 
@@ -54,5 +56,47 @@ echo html_writer::start_div('coursename') . 'Course Start Date: ' . userdate($co
 echo get_string('helloworld', 'tool_crmpicco') . "<br>";
 
 echo html_writer::start_span() . get_string('helloworld', 'tool_crmpicco') . html_writer::end_span();
+
+$table = new tool_crmpicco\tool_crmpicco_table(uniqid(), new moodle_url('/admin/tool/crmpicco/index.php'));
+echo $table->out(50, true);
+
+if ($table->rawdata) {
+
+    echo html_writer::start_tag('table');
+
+    echo html_writer::start_tag('tr');
+    echo html_writer::start_tag('td');
+    echo get_string('name');
+    echo html_writer::end_tag('td');
+    echo html_writer::start_tag('td');
+    echo get_string('completed', 'tool_crmpicco');
+    echo html_writer::end_tag('td');
+    echo html_writer::start_tag('td');
+    echo get_string('priority', 'tool_crmpicco');
+    echo html_writer::end_tag('td');
+    echo html_writer::end_tag('tr');
+
+
+    foreach ($table->rawdata as $result) {
+        echo html_writer::start_tag('tr');
+        echo html_writer::start_tag('td');
+        echo $result->name;
+        echo html_writer::end_tag('td');
+        echo html_writer::start_tag('td');
+        echo ($result->completed == 1 ? get_string('yes') : get_string('no'));
+        echo html_writer::end_tag('td');
+        echo html_writer::start_tag('td');
+        echo $result->priority;
+        echo html_writer::end_tag('td');
+        echo html_writer::end_tag('tr');
+    }
+
+    echo html_writer::end_tag('table');
+}
+
+//echo "<pre>";
+//print_r($table);
+//echo "</pre>";
+//echo "<br>";
 
 echo $OUTPUT->footer();

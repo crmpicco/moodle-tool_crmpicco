@@ -22,12 +22,12 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2016042201;
+$plugin->version   = 2016042603;
 //$plugin->requires  = TODO;
 //$plugin->cron      = 0;
 $plugin->component = 'tool_crmpicco';
 $plugin->maturity  = MATURITY_ALPHA;
-$plugin->release   = '1.4';
+$plugin->release   = '1.5';
 
 //$plugin->dependencies = array(
 //    'mod_forum' => ANY_VERSION,

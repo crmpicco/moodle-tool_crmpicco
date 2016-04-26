@@ -23,3 +23,7 @@
 $string['pluginname'] = 'My first Moodle plugin';
 
 $string['helloworld'] = 'Hello World EN';
+
+$string['completed'] = 'Completed';
+
+$string['priority'] = 'Priority';
